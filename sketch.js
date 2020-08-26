@@ -14,6 +14,9 @@ function draw() {
   if (x > width - 100) {
     speed = -speed;
   }
+  else if (x <= 3) {
+    speed = 3;
+  }
 
   x = x + speed;
   // put drawing code here
