@@ -1,34 +1,50 @@
-var cfill = {
-  r: 4,
-  g: 29,
-  b: 64
-}
 
+let speed = 0.1;
+var angle = 2.0;
+var scalar = 3.5;
+var offset = 400;
+var col = {
+  r: 100,
+  g: 100,
+  b: 100
+};
 function setup() {
   createCanvas(windowWidth,windowHeight);
+  noStroke();
+  background(0,0,0);
   // put setup code here
 }
 
 function draw() {
-  background(cfill.r, cfill.g, cfill.b);
-  circle(mouseX, mouseY, 50);
-  stroke(51);
-  strokeWeight(4);
-  fill(mouseX, mouseY, mouseY);
-  // put drawing code here
-}
+  col.r = random(0,255);
+  col.g = random(0,255);
+  col.b = random(0,255);
 
-function mouseClicked() {
-  cfill.r = cfill.r + 5;
-  cfill.g = cfill.g + 5;
-  cfill.b = cfill.b + 5;
-  print('r: ' + cfill.r);
+  // x and y are calculated by converting from polar to cartesian
+  var x = (windowWidth/2) + cos(angle) * scalar;
+  var y = (windowHeight/2) + sin(angle) * scalar;
+  fill(col.r, col.g, col.b);
+  ellipse(x,y,5,5);
+  angle += speed;
+  scalar += speed;
 }
 
 function keyPressed() {
-  if (keyCode == BACKSPACE) {
-    cfill.r = 4;
-    cfill.g = 29;
-    cfill.b = 64;
+  if (keyCode == LEFT_ARROW) {
+    speed -= 0.1;
   }
+
+  if (keyCode == RIGHT_ARROW) {
+    speed += 0.1;
+  }
+
+  if (keyCode == ENTER) {
+    speed = 0.0;
+  }
+
+  if (keyCode == SHIFT) {
+    saveCanvas('coolSpiral', 'png');
+  }
+
+  return false
 }
