@@ -2,11 +2,10 @@
 let speed = 0.1;
 var angle = 2.0;
 var scalar = 3.5;
-var offset = 400;
-var col = {
-  r: 100,
-  g: 100,
-  b: 100
+var color = {
+  red: 100,
+  green: 100,
+  blue: 100
 };
 function setup() {
   createCanvas(windowWidth,windowHeight);
@@ -16,14 +15,14 @@ function setup() {
 }
 
 function draw() {
-  col.r = random(0,255);
-  col.g = random(0,255);
-  col.b = random(0,255);
+  color.red = random(0,255);
+  color.green = random(0,255);
+  color.blue = random(0,255);
 
   // x and y are calculated by converting from polar to cartesian
   var x = (windowWidth/2) + cos(angle) * scalar;
   var y = (windowHeight/2) + sin(angle) * scalar;
-  fill(col.r, col.g, col.b);
+  fill(color.red, color.green, color.blue);
   ellipse(x,y,5,5);
   angle += speed;
   scalar += speed;
